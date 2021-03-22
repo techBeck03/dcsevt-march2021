@@ -9,7 +9,7 @@ resource "intersight_ntp_policy" "ntp1" {
   enabled     = true
   ntp_servers = [
     "172.16.1.90",
-    "172.16.1.92"
+    "172.16.1.91"
   ]
   organization {
     moid = data.intersight_organization_organization.default_organization.moid

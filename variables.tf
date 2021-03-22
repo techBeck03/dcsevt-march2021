@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 
 variable "intersight_api_secret" {
-  type = "string"
+  type = string
 }
 
 variable "ntp_policy_name" {
