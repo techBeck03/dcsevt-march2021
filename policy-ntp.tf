@@ -9,18 +9,18 @@ resource "intersight_ntp_policy" "ntp1" {
   enabled     = true
   ntp_servers = [
     "172.16.1.90",
-    "172.16.1.91"
+    "172.16.1.92"
   ]
   organization {
     moid = data.intersight_organization_organization.default_organization.moid
   }
-  dynamic "profiles" {
-    for_each = intersight_server_profile.my_server_profiles
-    content {
-      moid        = profiles.value.moid
-      object_type = "server.Profile"
-    }
-  }
+  # dynamic "profiles" {
+  #   for_each = intersight_server_profile.my_server_profiles
+  #   content {
+  #     moid        = profiles.value.moid
+  #     object_type = "server.Profile"
+  #   }
+  # }
   tags {
     key   = "owner"
     value = var.owner

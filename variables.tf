@@ -1,6 +1,11 @@
 # =============================================================================
 # Policy Names
 # -----------------------------------------------------------------------------
+
+variable "intersight_api_secret" {
+  type = "string"
+}
+
 variable "ntp_policy_name" {
   default = "terraform-ntp-policy"
 }
@@ -75,6 +80,7 @@ variable "owner" {
 # -----------------------------------------------------------------------------
 variable "imc_admin_password" {
   default = "!Ciscodc123"
+  sensitive = true
 }
 variable "imc_admin_username" {
   default = "tfadmin"
