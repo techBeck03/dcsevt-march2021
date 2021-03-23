@@ -134,3 +134,56 @@ timezone    = var.ntp_timezone
 ```
 
 Execute `terraform apply` and ensure the NTP policy has a new description and the appropriate timezone.
+
+# Step 4: Create a server profile and map the policy
+
+Create a file called `server-profile.tf` and add the sample code found in the [documentation](https://registry.terraform.io/providers/CiscoDevNet/intersight/latest/docs/resources/server_profile).
+
+Make a few modifications:
+* give the profile a better name
+* give the profile some kind of tag
+* update the organization to be the organization located in the very first step
+
+```
+resource "intersight_server_profile" "server1" {
+  name = "server1"
+  action = "No-op"
+  tags {
+    key = "server"
+    value = "demo"
+  }
+  organization {
+    object_type = "organization.Organization"
+    moid = data.intersight_organization_organization.sevt_org.results[0].moid
+  }
+}
+```
+
+An optional output block can be used to display the created server profile.
+
+```
+output "profile-moid" {
+  value = intersight_server_profile.server1.moid
+}
+```
+Execute `terraform apply` and ensure the profile was created. Note that the profile has no policies assigned to it.
+
+Edit the file `ntp-policy.tf` and add the following block to the policy definition. This will assign the NTP policy to the server profile that was just created.
+
+```
+profiles {
+    moid = intersight_server_profile.server1.moid
+    object_type = "server.Profile"
+  }
+```
+Execute `terraform apply` and ensure the profile now has the NTP policy assigned to it.
+
+The profile is still not assigned to a server, though. Locate the `moid` for an available server and update the server profile definition in `server-profile.tf` with the following. Note that the field that should be added is **assigned server** and not *associated* server. The `moid` and `object_type` are the only parameters required.
+
+```
+assigned_server {
+  moid = "5fd8c3b26176752d30db2c81"
+  object_type = "compute.RackUnit"
+}
+```
+Execute `terraform apply` and ensure the profile is now assigned to a physical server.
