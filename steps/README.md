@@ -90,6 +90,7 @@ output "ntp-policy-moid" {
   value = intersight_ntp_policy.ntp1.moid
 }
 ```
+Execute `terraform apply` and ensure the NTP policy was created.
 
 # Step 3: using variables
 
