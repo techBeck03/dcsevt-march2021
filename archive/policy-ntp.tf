@@ -8,8 +8,8 @@ resource "intersight_ntp_policy" "ntp1" {
   description = var.description
   enabled     = true
   ntp_servers = [
-    "172.16.1.90",
-    "172.16.1.91"
+    "172.16.1.90"
+    # "172.16.1.91"
   ]
   organization {
     moid = data.intersight_organization_organization.default_organization.moid

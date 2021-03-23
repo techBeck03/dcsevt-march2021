@@ -5,6 +5,9 @@
 variable "intersight_api_secret" {
   type = string
 }
+variable "intersight_api_key" {
+  type = string
+}
 
 variable "ntp_policy_name" {
   default = "terraform-ntp-policy"
