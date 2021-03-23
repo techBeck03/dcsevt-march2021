@@ -187,3 +187,36 @@ assigned_server {
 }
 ```
 Execute `terraform apply` and ensure the profile is now assigned to a physical server.
+
+# Step 5: Transfer your state remotely
+
+For this portion, you will need a Terraform Cloud account to reproduce what is being shown live. You should have a local state file at this time. We will be transferring that state to Terraform Cloud.
+
+Create a file named `backend.tf` with the following contents (replacing the organization name and workspace name with your own).
+
+```
+terraform {
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "Auslab"
+
+    workspaces {
+      name = "sevt-march2021"
+    }
+  }
+}
+```
+
+Add configuration parameters to your `providers.tf` file as shown below. 
+```
+provider "intersight" {
+  apikey    = var.intersight_api_key
+  secretkey = var.intersight_api_secret
+  endpoint  = "intersight.com"
+}
+```
+Variables for the API key and API secret should already be created in Terraform Cloud. Ensure that any variable in the configuration files that does not have a default is also created in Terraform Cloud.
+
+Execute `terraform init` and notice the request to transfer your state remotely. Answer yes. From this point forward, Terraform Cloud executes your desired state and manages your state file.
+
+**Remove your local state file** as state is now managed by Terraform Cloud. The presence of the local state file will interfere with any attempts to update your configuration locally.
