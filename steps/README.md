@@ -119,7 +119,7 @@ variable "intersight_api_key" {
 }
 ```
 
-Create a file called `terraform.tfvars` which will contain the **values** to be used for those variables. This file has one variable per line in any order. Variables can be specified in other files with any name that follows the format `*.auto.tfvars`.
+Create a file called `sevt.auto.tfvars` which will contain the **values** to be used for those variables. This file has one variable per line in any order. Variables can be specified in other files with any name that follows the format `*.auto.tfvars`.
 
 ```
 policy_description = "Created by Terraform. Do not edit manually."
