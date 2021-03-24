@@ -1,6 +1,5 @@
 resource "tfe_workspace" "test" {
-#   name         = "sevt-march2021"
-  name         = "sevt-testing"
+  name         = "sevt-march2021"
   organization = "Auslab"
 }
 
