@@ -215,8 +215,8 @@ provider "intersight" {
   endpoint  = "intersight.com"
 }
 ```
-Variables for the API key and API secret should already be created in Terraform Cloud. Ensure that any variable in the configuration files that does not have a default is also created in Terraform Cloud.
+Variables for the API key and API secret should already be created in Terraform Cloud.
 
-Execute `terraform init` and notice the request to transfer your state remotely. Answer yes. From this point forward, Terraform Cloud executes your desired state and manages your state file.
+Execute `terraform init` and notice the request to transfer your state remotely. Answer yes. From this point forward, Terraform Cloud executes your desired state and manages your state file. Commands you type at your local console are executed by Terraform Cloud.
 
 **Remove your local state file** as state is now managed by Terraform Cloud. The presence of the local state file will interfere with any attempts to update your configuration locally.
