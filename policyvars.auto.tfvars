@@ -1,1 +1,0 @@
-policy_description = "Created by Terraform. Please do not edit manually."
