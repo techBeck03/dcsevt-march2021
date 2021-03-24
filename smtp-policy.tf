@@ -11,4 +11,8 @@ resource "intersight_smtp_policy" "sevt2021_labadmins" {
   smtp_port       = 25
   sender_email    = "example-email@cisco.com"
   smtp_recipients = ["example-email@cisco.com"]
+  tags {
+    key = "owner"
+    value = "robbeck"
+  }
 }

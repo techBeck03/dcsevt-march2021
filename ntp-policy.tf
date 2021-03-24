@@ -17,6 +17,10 @@ resource "intersight_ntp_policy" "ntp1" {
     moid = intersight_server_profile.server1.moid
     object_type = "server.Profile"
   }
+  tags {
+    key = "owner"
+    value = "robbeck"
+  }
 }
 
 output "ntp-policy-moid" {
